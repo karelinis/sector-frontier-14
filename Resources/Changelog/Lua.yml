@@ -4013,3 +4013,10 @@ Entries:
   id: 285
   time: '2026-05-08T03:57:37.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/568
+- author: BTReflex
+  changes:
+    - type: Add
+      message: Добавлены блюспейс ковры
+  id: 286
+  time: '2026-05-08T03:58:11.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/570
