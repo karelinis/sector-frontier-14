@@ -4006,3 +4006,10 @@ Entries:
   id: 284
   time: '2026-05-01T19:39:45.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/555
+- author: BTReflex
+  changes:
+    - type: Add
+      message: немало локализаций
+  id: 285
+  time: '2026-05-08T03:57:37.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/568
