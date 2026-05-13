@@ -59,12 +59,13 @@ public sealed class SmartFridgeSystem : EntitySystem
             anyInserted = true;
 
             _container.Insert(used, container);
-            var key = new SmartFridgeEntry(Identity.Name(used, EntityManager));
+            var name = Identity.Name(used, EntityManager);
+            var key = new SmartFridgeEntry(name);
             if (!ent.Comp.Entries.Contains(key))
                 ent.Comp.Entries.Add(key);
 
-            ent.Comp.ContainedEntries.TryAdd(key, new());
-            var entries = ent.Comp.ContainedEntries[key];
+            ent.Comp.ContainedEntries.TryAdd(name, new());
+            var entries = ent.Comp.ContainedEntries[name];
             if (!entries.Contains(GetNetEntity(used)))
                 entries.Add(GetNetEntity(used));
 
@@ -89,15 +90,16 @@ public sealed class SmartFridgeSystem : EntitySystem
 
     private void OnItemRemoved(Entity<SmartFridgeComponent> ent, ref EntRemovedFromContainerMessage args)
     {
-        var key = new SmartFridgeEntry(Identity.Name(args.Entity, EntityManager));
+        var name = Identity.Name(args.Entity, EntityManager);
+        var key = new SmartFridgeEntry(name);
 
-        if (ent.Comp.ContainedEntries.TryGetValue(key, out var contained))
+        if (ent.Comp.ContainedEntries.TryGetValue(name, out var contained))
         {
             contained.Remove(GetNetEntity(args.Entity));
             // Frontier: remove listing when empty
             if (contained.Count <= 0)
             {
-                ent.Comp.ContainedEntries.Remove(key);
+                ent.Comp.ContainedEntries.Remove(name);
                 ent.Comp.Entries.Remove(key);
             }
             // End Frontier: remove listing when empty
@@ -124,7 +126,7 @@ public sealed class SmartFridgeSystem : EntitySystem
         if (!Allowed(ent, args.Actor))
             return;
 
-        if (!ent.Comp.ContainedEntries.TryGetValue(args.Entry, out var contained))
+        if (!ent.Comp.ContainedEntries.TryGetValue(args.Entry.Name, out var contained))
         {
             _audio.PlayPredicted(ent.Comp.SoundDeny, ent, args.Actor);
             _popup.PopupPredicted(Loc.GetString("smart-fridge-component-try-eject-unknown-entry"), ent, args.Actor);
@@ -141,7 +143,7 @@ public sealed class SmartFridgeSystem : EntitySystem
             // Frontier: remove listing when empty
             if (contained.Count <= 0)
             {
-                ent.Comp.ContainedEntries.Remove(args.Entry);
+                ent.Comp.ContainedEntries.Remove(args.Entry.Name);
                 ent.Comp.Entries.Remove(args.Entry);
             }
             // End Frontier: remove listing when empty
