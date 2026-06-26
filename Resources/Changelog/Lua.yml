@@ -4385,3 +4385,24 @@ Entries:
   id: 305
   time: '2026-06-26T09:30:50.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/591
+- author: BTReflex
+  changes:
+    - type: Add
+      message: Добавлен ибупрофен
+    - type: Add
+      message: >-
+        Добавлены кровоостанавливающая пудра, сульфадиазин серебра, цианид,
+        политриновая кислота, антигол
+    - type: Add
+      message: Добавлена новая эмоция для вульпкан
+    - type: Fix
+      message: Исправлено отображение спрайта напольных светильников в меню РСУ
+    - type: Fix
+      message: Консоль кодекса теперь даёт объявления от имени кодекса
+    - type: Fix
+      message: Понижен класс контрабанды скафандров СБ до т2
+    - type: Fix
+      message: Теперь АКЭТ не стреляют по M92, M92-X и реактивным ботинкам
+  id: 306
+  time: '2026-06-26T12:20:39.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/595
